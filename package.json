@@ -1,0 +1,23 @@
+{
+  "name": "museli",
+  "version": "1.23.0",
+  "description": "Touch the unknown world",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HelloWorld017/museli.git"
+  },
+  "keywords": [
+    "rhythm",
+    "game"
+  ],
+  "author": "Khinenw",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HelloWorld017/museli/issues"
+  },
+  "homepage": "https://github.com/HelloWorld017/museli#readme"
+}

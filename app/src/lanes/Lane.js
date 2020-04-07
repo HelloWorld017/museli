@@ -60,13 +60,15 @@ class Lane extends GameObject {
 		if(progress1 <= CURVE_START_HEIGHT) {
 			path.push({
 				method: 'moveTo',
-				args: [ this.getPositionLinear(progress1) ]
+				args: [ this.getPositionLinear(progress1) ],
+				progress: [ progress1 ]
 			});
 
 			if(progress2 <= CURVE_START_HEIGHT) {
 				path.push({
 					method: 'lineTo',
-					args: [ this.getPositionLinear(progress2) ]
+					args: [ this.getPositionLinear(progress2) ],
+					progress: [ progress2 ]
 				});
 
 				return path;
@@ -75,13 +77,15 @@ class Lane extends GameObject {
 			progressP0 = CURVE_START_HEIGHT;
 			path.push({
 				method: 'lineTo',
-				args: [ this.p0 ]
+				args: [ this.p0 ],
+				progress: [ progressP0 ]
 			});
 		} else {
 			progressP0 = progress1;
 			path.push({
 				method: 'moveTo',
-				args: [ this.getPositionCurve(progress1) ]
+				args: [ this.getPositionCurve(progress1) ],
+				progress: [ progressP0 ]
 			});
 		}
 
@@ -93,7 +97,7 @@ class Lane extends GameObject {
 		const p2 = this.p2;
 		const curve = new QuadraticBezier(p0, p1, p2);
 
-		const newProgress = (progress2 - progressP0) / (1 - CURVE_START_HEIGHT + progressP0);
+		const newProgress = (progress2 - progressP0) / (1 - progressP0);
 		const l1 =
 			p0.clone().multiply(newProgress).add(
 				p1.clone().multiply(1 - newProgress)
@@ -105,8 +109,11 @@ class Lane extends GameObject {
 			args: [
 				l1,
 				l2
-			]
+			],
+			progress: [ progressP0, newProgress ]
 		});
+
+		return path;
 	}
 
 	getSize(progress) {

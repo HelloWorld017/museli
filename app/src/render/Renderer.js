@@ -1,5 +1,9 @@
 class Renderer {
-	constructor(canvas, ctx = null, width = 0, height = 0, x = 0, y = 0) {
+	constructor(
+		game, canvas, ctx = null,
+		width = 0, height = 0, x = 0, y = 0
+	) {
+		this.game = game;
 		this.canvas = canvas;
 		this.ctx = ctx || canvas.getContext('2d');
 
@@ -10,7 +14,7 @@ class Renderer {
 	}
 
 	createInstance(width, height, x, y) {
-		return new Renderer(this.canvas, this.ctx, width, height, x, y);
+		return new Renderer(this.game, this.canvas, this.ctx, width, height, x, y);
 	}
 }
 
